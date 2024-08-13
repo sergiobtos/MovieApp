@@ -3,14 +3,12 @@ package com.group.movieapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,9 +26,10 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class MainActivity : ComponentActivity() {
 
-    private val apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NWQ2YTBmM2E0YjUxYmJiMDE1OWYwZjQ1NGQ3MDI4MiIsIm5iZiI6MTcyMzUwODI1NC41MzM0ODMsInN1YiI6IjY2YmFhNTc5M2UyZWU5ZTdhY2I3NmNmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.plTqGIypZZYIFA_--Mf0GyaWmOvvRhb7zXNfoo8TsMk" // Replace with your TMDB API key
+    private val apiKey = "95d6a0f3a4b51bbb0159f0f454d70282" // Replace with your TMDB API key
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +58,7 @@ fun MovieScreen(apiKey: String) {
     val movieApi = retrofit.create(TMDBApi::class.java)
 
     LaunchedEffect(Unit) {
-        movieApi.searchMovies("Toronto Weather", apiKey).enqueue(object : retrofit2.Callback<MovieResponse> {
+        movieApi.searchMovies("Prey", apiKey).enqueue(object : retrofit2.Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: retrofit2.Response<MovieResponse>) {
                 if (response.isSuccessful) {
                     val movies = response.body()?.results
@@ -92,6 +91,6 @@ fun MovieScreen(apiKey: String) {
 @Composable
 fun GreetingPreview() {
     MovieAppTheme {
-        MovieScreen("eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NWQ2YTBmM2E0YjUxYmJiMDE1OWYwZjQ1NGQ3MDI4MiIsIm5iZiI6MTcyMzUwODI1NC41MzM0ODMsInN1YiI6IjY2YmFhNTc5M2UyZWU5ZTdhY2I3NmNmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.plTqGIypZZYIFA_--Mf0GyaWmOvvRhb7zXNfoo8TsMk")
+        MovieScreen("95d6a0f3a4b51bbb0159f0f454d70282")
     }
 }
